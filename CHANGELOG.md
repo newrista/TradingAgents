@@ -19,6 +19,10 @@ Breaking changes within the 0.x line are called out explicitly.
 - NOTE: On my setup, DeepSeek provider occasionally times out on the Portfolio
   Manager structured-output call; added a manual retry wrapper locally as a
   workaround until upstream adds retry logic.
+- NOTE: The 5-tier vs 3-tier rating split (Research Manager/Portfolio Manager
+  use 5-tier, Trader uses 3-tier) tripped me up when reading signal output.
+  Remember: Overweight maps to Buy intent, Underweight maps to Sell intent
+  when reconciling signals across agents.
 
 ## [0.2.4] — 2026-04-25
 
@@ -52,11 +56,3 @@ Breaking changes within the 0.x line are called out explicitly.
   the memory log; Trader keeps 3-tier (Buy / Hold / Sell) since transaction
   direction is naturally ternary.
 - **Pytest fixtures** — lazy LLM client imports plus placeholder API keys so
-  the test suite runs cleanly without credentials. (#588)
-
-### Changed
-
-- **`backend_url` default is now `None`** rather than the OpenAI URL. Each
-  provider client falls back to its native default. The previous default
-  leaked the OpenAI URL into non-OpenAI clients (e.g. Gemini), producing
-  malformed request URLs for Python users who switched pro
