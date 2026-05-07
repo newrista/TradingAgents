@@ -14,6 +14,11 @@ Breaking changes within the 0.x line are called out explicitly.
   and Qwen providers with structured-output agents on small-cap tickers.
 - TODO: experiment with `memory_log_max_entries` tuning to see how resolved
   entry cap affects signal quality over longer backtests.
+- TODO: try `memory_log_max_entries = 50` as a starting point — anecdotally
+  keeping too many resolved entries seems to dilute recent signal weight.
+- NOTE: On my setup, DeepSeek provider occasionally times out on the Portfolio
+  Manager structured-output call; added a manual retry wrapper locally as a
+  workaround until upstream adds retry logic.
 
 ## [0.2.4] — 2026-04-25
 
@@ -54,10 +59,4 @@ Breaking changes within the 0.x line are called out explicitly.
 - **`backend_url` default is now `None`** rather than the OpenAI URL. Each
   provider client falls back to its native default. The previous default
   leaked the OpenAI URL into non-OpenAI clients (e.g. Gemini), producing
-  malformed request URLs for Python users who switched providers without
-  overriding `backend_url`. The CLI flow is unaffected.
-- All file I/O passes explicit `encoding="utf-8"` so Windows users no longer
-  hit `UnicodeEncodeError` with the cp1252 default. (#543, #550, #576)
-- Cache and log directories moved to `~/.tradingagents/` to resolve Docker
-  permission issues. (#519)
-- `
+  malformed request URLs for Python users who switched pro
