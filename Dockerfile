@@ -26,6 +26,7 @@ WORKDIR /home/appuser/app
 COPY --from=builder --chown=appuser:appuser /build .
 
 # Set a default timezone so market-hour logic behaves consistently
-ENV TZ=America/New_York
+# Note: override at runtime with -e TZ=<your/timezone> if needed
+ENV TZ=America/Chicago
 
 ENTRYPOINT ["tradingagents"]
