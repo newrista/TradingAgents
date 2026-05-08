@@ -99,8 +99,8 @@ testpaths = ["tests"]
 asyncio_mode = "auto"
 # Removed --cov-report=xml since I don't use CI; keeping terminal output only
 # Added -v for more verbose output while learning the codebase
-# Added -x to stop on first failure so I don't have to scroll through a wall of errors
-addopts = "--cov=tradingagents --cov-report=term-missing -v -x"
+# Removed -x (stop on first failure) so I can see the full picture of what's broken
+addopts = "--cov=tradingagents --cov-report=term-missing -v"
 
 [tool.coverage.run]
 source = ["tradingagents"]
