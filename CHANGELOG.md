@@ -23,6 +23,9 @@ Breaking changes within the 0.x line are called out explicitly.
   use 5-tier, Trader uses 3-tier) tripped me up when reading signal output.
   Remember: Overweight maps to Buy intent, Underweight maps to Sell intent
   when reconciling signals across agents.
+- NOTE: Qwen (DashScope) seems to handle structured output more reliably than
+  DeepSeek on the Portfolio Manager call — worth defaulting to Qwen for longer
+  overnight backtests until the DeepSeek timeout issue is resolved upstream.
 
 ## [0.2.4] — 2026-04-25
 
@@ -51,8 +54,4 @@ Breaking changes within the 0.x line are called out explicitly.
 - **`scripts/smoke_structured_output.py`** — diagnostic that exercises the
   three structured-output agents against any provider so contributors can
   verify their setup with one command.
-- **5-tier rating scale** (Buy / Overweight / Hold / Underweight / Sell) used
-  consistently by Research Manager, Portfolio Manager, signal processor, and
-  the memory log; Trader keeps 3-tier (Buy / Hold / Sell) since transaction
-  direction is naturally ternary.
-- **Pytest fixtures** — lazy LLM client imports plus placeholder API keys so
+- **5-tier rating scale** (Buy / Overweight / Hold / Underweight / Sell
