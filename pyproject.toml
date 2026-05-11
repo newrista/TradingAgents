@@ -100,7 +100,8 @@ asyncio_mode = "auto"
 # Removed --cov-report=xml since I don't use CI; keeping terminal output only
 # Added -v for more verbose output while learning the codebase
 # Removed -x (stop on first failure) so I can see the full picture of what's broken
-addopts = "--cov=tradingagents --cov-report=term-missing -v"
+# Added --tb=short to keep tracebacks readable without being overwhelming
+addopts = "--cov=tradingagents --cov-report=term-missing -v --tb=short"
 
 [tool.coverage.run]
 source = ["tradingagents"]
