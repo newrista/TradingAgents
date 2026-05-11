@@ -27,6 +27,7 @@ COPY --from=builder --chown=appuser:appuser /build .
 
 # Set a default timezone so market-hour logic behaves consistently
 # Note: override at runtime with -e TZ=<your/timezone> if needed
-ENV TZ=America/Chicago
+# Personal note: I'm in the Eastern timezone, so defaulting to America/New_York
+ENV TZ=America/New_York
 
 ENTRYPOINT ["tradingagents"]
