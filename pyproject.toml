@@ -105,4 +105,14 @@ addopts = "--cov=tradingagents --cov-report=term-missing -v --tb=short"
 
 [tool.coverage.run]
 source = ["tradingagents"]
-omit = ["tests/*", "*/__init__.py"]
+# Omitting test files and CLI entry point from coverage since I mainly care about core logic
+omit = [
+    "tests/*",
+    "tradingagents/cli.py",
+    "*/__init__.py",
+]
+
+[tool.coverage.report]
+# Only flag lines that are completely uncovered; partial branch misses are noisy during exploration
+fail_under = 0
+show_missing = true
